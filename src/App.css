@@ -1,0 +1,259 @@
+@import "./reset.css";
+
+body {
+  background-color: bisque;
+  opacity: 0.9;
+  font-family: "Do Hyeon";
+}
+
+input {
+  font-family: "Do Hyeon";
+}
+/* Mobile */
+@media (min-width: 0px) and (max-width: 420px) {
+  .head {
+    margin-top: 60px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .today {
+    margin-top: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inputTodo {
+    margin: 20px 10px;
+    text-align: center;
+    padding: 10px;
+    background: bisque;
+    border: none;
+  }
+  .inputTodo:focus {
+    color: cornflowerblue;
+  }
+
+  li {
+    width: 280px;
+    height: 30px;
+    padding: 5px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+  .checkTodo:checked + input {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  .textTodo {
+    width: 200px;
+    height: 30px;
+    margin-left: 5px;
+    box-sizing: border-box;
+    border: none;
+    background-color: bisque;
+    overflow: hidden; /* 넘치는 거 자르기 on */
+    text-overflow: ellipsis; /* 넘쳣을 때 ... 으로 만들어 주는 녀석 */
+    white-space: nowrap; /* 창 줄였을 때 다음 칸으로 넘어가는 거 막기 */
+  }
+
+  .lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg,
+  .btn_check {
+    opacity: 0.8;
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 420px) and (max-width: 780px) {
+  body {
+    font-size: 26px;
+  }
+  .head {
+    margin-top: 80px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .today {
+    margin-top: 40px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .title {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inputTodo {
+    border-radius: 10px;
+    font-size: 32px;
+    margin: 20px 10px;
+    text-align: center;
+    padding: 10px;
+    background: bisque;
+    border: none;
+  }
+
+  .inputTodo:focus {
+    color: cornflowerblue;
+  }
+
+  li {
+    width: 560px;
+    height: 40px;
+    padding: 5px;
+    margin: 5px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+  .checkTodo:checked + input {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .textTodo {
+    font-size: 32px;
+    width: 400px;
+    height: 40px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    border: none;
+    background-color: bisque;
+    overflow: hidden; /* 넘치는 거 자르기 on */
+    text-overflow: ellipsis; /* 넘쳣을 때 ... 으로 만들어 주는 녀석 */
+    white-space: nowrap; /* 창 줄였을 때 다음 칸으로 넘어가는 거 막기 */
+  }
+  .checkTodo {
+    transform: scale(1.85);
+  }
+
+  .lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg,
+  .btn_check {
+    opacity: 0.8;
+    padding-right: 15px;
+    margin-right: 15px;
+  }
+}
+
+/* PC */
+@media (min-width: 780px) and (max-width: 1920px) {
+  body {
+    font-size: 32px;
+  }
+
+  .head {
+    margin-top: 100px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .today {
+    margin: 40px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inputTodo {
+    margin: 20px 10px;
+    text-align: center;
+    padding: 10px;
+    background: bisque;
+    border-style: none;
+    border-radius: 10px;
+    font-size: 36px;
+    transition: 0.3;
+  }
+
+  .inputTodo:hover {
+    background-color: #ffa4a4;
+    opacity: 0.7;
+    transition: 0.3;
+  }
+
+  .inputTodo:focus {
+    color: cornflowerblue;
+  }
+
+  li {
+    width: 840px;
+    height: 50px;
+    padding: 5px;
+    list-style: none;
+    display: flex;
+    margin: 10px;
+    align-items: center;
+  }
+  .checkTodo:checked + input {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  .textTodo {
+    font-size: 36px;
+    width: 600px;
+    height: 50px;
+    margin-left: 40px;
+    box-sizing: border-box;
+    border: none;
+    background-color: bisque;
+    overflow: hidden; /* 넘치는 거 자르기 on */
+    text-overflow: ellipsis; /* 넘쳣을 때 ... 으로 만들어 주는 녀석 */
+    white-space: nowrap; /* 창 줄였을 때 다음 칸으로 넘어가는 거 막기 */
+  }
+
+  .checkTodo {
+    transform: scale(2.5);
+  }
+
+  .lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg,
+  .btn_check {
+    opacity: 0.8;
+    padding-right: 15px;
+    margin-right: 15px;
+  }
+}

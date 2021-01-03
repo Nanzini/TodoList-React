@@ -1,62 +1,68 @@
-import React from "react";
+import React, {Component} from 'react';
+import {Print, maxId, getToday} from "./modules.js";
 
-export const foodILike = [
-  {id : 1,
-    name: "Kimchi",
-    image:
-      "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
-  },
-  {id : 2,
-    name: "Samgyeopsal",
-    image:
-      "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
-  },
-  {id : 3,
-    name: "Bibimbap",
-    image:
-      "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
-  },
-  {id : 4,
-    name: "Doncasu",
-    image:
-      "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
-  },
-  {id : 5,
-    name: "Kimbap",
-    image:
-      "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
+import './App.css';
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    const today = new Date();
+    this.state = {
+      list: (JSON.parse(localStorage.getItem('todo'))) ? JSON.parse(localStorage.getItem('todo')) : [],
+      id: (maxId((JSON.parse(localStorage.getItem('todo'))))) ,
+      month : today.getMonth()+1,
+      date : today.getDate(),
+      day : getToday()
+    };
   }
-];
-export function Food(props){
-	return(
-		<div>
-			<h2> {props.name} </h2>
-			<img src={props.image} />
-		</div>	
-	)
+
+  btn_addElement = () => {
+    const newElement = {
+      id: 1+this.state.id,
+      value: document.querySelector(".inputTodo").value
+    };
+
+    const list =this.state.list;
+
+    list.push(newElement);
+
+    this.setState({
+      list,
+      id : newElement.id
+    });
+    localStorage.setItem('todo',JSON.stringify(list))
+    document.querySelector(".inputTodo").value = ""
 }
 
-export function App(){
-	return(
-    <div>
-      {
-        foodILike.map(function(i){
-          console.log("홏ㄹ 전 ㅣ " + i)
-          return (
-            <Food  key={i.id} name={i.name} image={i.image}/>
-          )
-        })
-      }
-    </div>
-  )
+  handelKeyPress = (event) => {
+    //event.key는 키보드로 입력받은 그대로의 값 저장중.
+    //event.charCode 13 엔터
+    if(event.key === 'Enter'){
+      this.btn_addElement()
+    }
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <div className='head'>Todo List</div>
+        <div className='today'>{this.state.month}월 {this.state.date}일 ({this.state.day})</div>
+        <div className='title'>
+          <input
+              className='inputTodo'
+              type='text'
+              placeholder='오늘 할일을 적읍시다'
+              onKeyPress={this.handelKeyPress}
+            />
+          <FontAwesomeIcon icon={faPlus} size="2x" onClick={this.btn_addElement}/>          
+        </div>
+        <Print lists={this.state} className='lists' />
+      </div>
+    );
+  }
 }
 
-export function Tmp(props){
-	return(
-		<div>
-			<h2> {props.name} </h2>
-      <h2> {props.id} </h2>
-		</div>	
-	)
-}
-
+export default App;
