@@ -20,9 +20,8 @@ export class Print extends Component {
     else if(currentTarget.tagName ==='svg')
       currentTarget= currentTarget.parentNode
     
-    // 확인 메시지
-
     const list = this.state.list;
+    // 현재포커싱되는 태그의 id와 state에 저장된 id 비교
     for(let i=0; i<list.length; i++){
       if(list[i].id === Number(currentTarget.id)){
         list.splice(i,1);
@@ -66,8 +65,6 @@ export class Print extends Component {
   }
 
   btn_OKElement = (event) => {
-    const list = this.state.list;
-
     let currentTarget = event.target.parentNode;
 
     currentTarget.querySelector("span").remove();
@@ -81,12 +78,12 @@ export class Print extends Component {
   render() {
     return (
       <ul className="lists">
-        {this.props.lists.list.map(item => {
+        {this.props.lists.list.map(item => { // props와 App과 따로놈.. 제대로하려면 App에다가 함수만들고 매개변수로 함수로 넘겨주기!
             return (
               <li key={item.id} id={item.id}>
                 <input type="checkbox" className="checkTodo"/>
                 <input type="text" value={item.value} className="textTodo" disabled={true} onChange={this.handleChange}/>
-                <FontAwesomeIcon className='btn_delete'icon={faTimes} onClick={this.btn_deleteElement} />
+                <FontAwesomeIcon className='btn_delete' icon={faTimes} onClick={this.btn_deleteElement} />
                 <span className='btn_edit' onClick={this.btn_UpdateElement}>✏️</span>
               </li>
             );
@@ -104,6 +101,7 @@ export const maxId = (list) =>{
   }
   else if(list !== null && list.length !== 0 ){
     const arrId = list.map(item => { return item.id})
+    // 배열 내 최대값 구할 때는 apply.
     return Math.max.apply(null,arrId)
   }
   // [] 일때의 경우

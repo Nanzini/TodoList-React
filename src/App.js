@@ -1,3 +1,4 @@
+//코드컨벤션 필요
 import React, {Component} from 'react';
 import {Print, maxId, getToday} from "./modules.js";
 
@@ -20,13 +21,13 @@ class App extends Component {
   }
 
   btn_addElement = () => {
+    // inputTodo폼의 할일 저장
     const newElement = {
       id: 1+this.state.id,
       value: document.querySelector(".inputTodo").value
     };
 
     const list =this.state.list;
-
     list.push(newElement);
 
     this.setState({
@@ -34,7 +35,7 @@ class App extends Component {
       id : newElement.id
     });
     localStorage.setItem('todo',JSON.stringify(list))
-    document.querySelector(".inputTodo").value = ""
+    document.querySelector(".inputTodo").value = "" // 조금더 리액트식으로 -> render시 조건부로
 }
 
   handelKeyPress = (event) => {
